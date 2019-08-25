@@ -1,0 +1,16 @@
+所有k8s中的资源都是通过URI区分，URI有一个UID，URI的重要组成部分是：对象的类型，对象的名字，对象的命名空间。
+UID是时间和空间上的唯一。
+
+google 推出 Kubernets 的目的是推广Google compute engine及Google APP engine。
+
+k8s 支持多种网络解决方案？比如？
+
+在service层次构建集群范围的sdn 网络，其目的是将服务发现和负载均衡放置到容器可达的范围。
+pod 是k8s可操作的最小对象
+
+https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.2/docs/design/architecture.png
+
+一切都基于分布式存储系统
+
+
+https://www.kubernetes.org.cn/kubernetes%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84
