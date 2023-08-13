@@ -14,3 +14,9 @@ https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.2/docs/design/
 
 
 https://www.kubernetes.org.cn/kubernetes%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84
+
+
+TODO
+- ca
+- crd typeobject inject
+- informer
