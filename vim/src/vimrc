@@ -1,0 +1,270 @@
+"关闭vi兼容模式"
+set nocompatible
+set backspace=indent,eol,start
+"设置代码折叠
+set foldmethod=indent
+"当文件在外部被修改时，自动更新该文件"
+set autoread
+
+"带有如下符号的单词不要被换行分割"
+set iskeyword+=_,$,@,%,#,-
+
+"自动开启语法高亮"
+syntax enable
+"开启文件类型侦测"
+syntax on
+
+"使用空格来替换Tab"
+set expandtab
+
+"设置所有的Tab和缩进为4个空格"
+set tabstop=4
+
+"设定<<和>>命令移动时的宽度为4"
+set shiftwidth=4
+
+"使得按退格键时可以一次删除4个空格"
+set softtabstop=4
+set smarttab
+
+"缩进，自动缩进（继承前一行的缩进）"
+"set autoindent 命令打开自动缩进，是下面配置的缩写
+"可使用autoindent命令的简写，即“:set ai”和“:set noai”
+"还可以使用“:set ai sw=4”在一个命令中打开缩进并设置缩进级别
+set ai
+set cindent
+
+"智能缩进"
+set si
+
+"自动换行”
+" set wrap
+
+"设置软宽度"
+set sw=4
+
+"行内替换"
+set gdefault
+
+"显示标尺"
+set ruler
+set cursorline
+set cursorcolumn
+
+"显示行数"
+set nu
+
+"高亮显示匹配的括号([{和}])"
+set showmatch
+
+"匹配括号高亮的时间（单位是十分之一秒）"
+" set mat=2
+
+"搜索逐字符高亮"
+set hlsearch
+set incsearch
+
+"设置编码"
+set encoding=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+"设置文件编码"
+set fileencodings=utf-8
+
+"设置终端编码"
+set termencoding=utf-8
+
+"设置语言编码"
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+
+"设置模式搜索最大内存maxmempattern"
+set mmp=20000
+
+""""""""""""""""""""""""""""""""
+""" set the runtime path to include Vundle and initialize
+""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+" go 中的代码追踪，输入 gd 就可以自动跳转
+Plugin 'dgryski/vim-godef'
+
+" plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'tyru/open-browser.vim.git'
+Plugin 'weirongxu/plantuml-previewer.vim.git'
+
+" c/c++
+Plugin 'WolfgangMehner/c-support.git'
+
+" markdown 插件
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+
+Bundle 'Lokaltog/vim-easymotion'
+" python ctags
+Bundle 'craigemery/vim-autotag'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on
+
+""""""""""""""""""""""""""""""""
+""" NerdTree config
+""""""""""""""""""""""""""""""""
+map <F5> :NERDTreeMirror<CR>
+map <F5> :NERDTreeToggle<CR>
+map <C-l> :tabnext<CR>
+map <C-h> :tabprev<CR>
+let NERDTreeQuitOnOpen=1
+
+
+""""""""""""""""""""""""""""""""
+""" vim-go config
+""""""""""""""""""""""""""""""""
+let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+
+let g:godef_split=2
+
+
+""""""""""""""""""""""""""""""""
+""" tagbar config
+""""""""""""""""""""""""""""""""
+" majutsushi/tagbar 插件打开关闭快捷键
+nmap <F8> :TagbarToggle<CR>
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+
+""""""""""""""""""""""""""""""""
+""" YouCompleteMe config
+""""""""""""""""""""""""""""""""
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', 'enter']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+""""""""""""""""""""""""""""""""
+""" nerdtree-git-plugin config
+""""""""""""""""""""""""""""""""
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+let g:NERDTreeGitStatusShowIgnored = 1
+
+
+""""""""""""""""""""""""""""""""
+""" other plugin config
+""""""""""""""""""""""""""""""""
+" markdwon 的快捷键
+map <silent> <F6> <Plug>MarkdownPreview
+map <silent> <F7> <Plug>StopMarkdownPreview
+
+" 设置 vimrc 修改保存后立刻生效，不用在重新打开
+" 建议配置完成后将这个关闭
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"
+
+
+""""""""""""""""""""""""""""""""
+""" plantuml plugin config
+""""""""""""""""""""""""""""""""
+let g:plantuml_previewer#save_format = 'svg'
+" PlantumlSave diagram.png"
+
+map <F10> :PlantumlOpen <CR>
+au BufRead,BufNewFile *.uml,*.puml,*.pu set filetype=plantuml
+au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
+    \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
+    \  1,
+    \  0
+    \)
+
+
+""""""""""""""""""""""""""""""""
+""" plantuml plugin config
+""""""""""""""""""""""""""""""""
+let mapleader=","
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
+
+
+""""""""""""""""""""""""""""""""
+""" python autotag
+""""""""""""""""""""""""""""""""
+let g:autotagTagsFile=".tags"
+
+
+""""""""""""""""""""""""""""""""
+""" csupport plugin config
+""""""""""""""""""""""""""""""""
+let g:C_UseTool_cmake    = 'yes'
+let g:C_UseTool_doxygen  = 'yes'
