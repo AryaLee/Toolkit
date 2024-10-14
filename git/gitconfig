@@ -1,0 +1,24 @@
+[alias]
+    br = branch
+    co = checkout
+    st = status
+    ci = commit
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[pull]
+    rebase = false
+[user]
+	name = AryaLee
+    email = meiyun0304@163.com
+
+[url "git@github.com:AryaLee"]
+    insteadOf = https://github.com/AryaLee
+
+[url "git@github.com:everoute"]
+    insteadOf = https://github.com/everoute
+
+[url "git@github.com:"]
+    insteadOf = https://github.com
+
+[credential]
+	helper = store
